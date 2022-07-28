@@ -1,0 +1,27 @@
+data/00z_ECMWF-Ensemble: 0 file(s) downloaded, 46 file(s) skipped
+data/00z_Druck-Wind-Feuchte: 0 file(s) downloaded, 28 file(s) skipped
+data/00z_Temperatur-Feuchte: 0 file(s) downloaded, 56 file(s) skipped
+data/00z_Wolken: 0 file(s) downloaded, 56 file(s) skipped
+data/Satellitenbilder: 12 file(s) downloaded, 133 file(s) skipped
+data/12z_Wolken: 28 file(s) downloaded, 28 file(s) skipped
+data/12z_Druck-Wind-Feuchte: 14 file(s) downloaded, 14 file(s) skipped
+data/12z_ICON-Meteogramme: 0 file(s) downloaded, 46 file(s) skipped
+data/12z_GFS-Meteogramme: 0 file(s) downloaded, 92 file(s) skipped
+data/12z_ECMWF-Meteogramme: 0 file(s) downloaded, 46 file(s) skipped
+data/12z_ECMWF-Ensemble: 0 file(s) downloaded, 46 file(s) skipped
+data/12z_Temperatur-Feuchte: 0 file(s) downloaded, 56 file(s) skipped
+data/00z_GFS-Meteogramme: 0 file(s) downloaded, 92 file(s) skipped
+data/00z_ECMWF-Meteogramme: 0 file(s) downloaded, 46 file(s) skipped
+data/00z_ICON-Meteogramme: 0 file(s) downloaded, 46 file(s) skipped
+data/00z_Modellvergleich_Luftdruck_Boden: 0 file(s) downloaded, 13 file(s) skipped
+data/00z_Wind_Temperatur_Feuchte: 0 file(s) downloaded, 56 file(s) skipped
+data/12z_Wind_Temperatur_Feuchte: 28 file(s) downloaded, 28 file(s) skipped
+data/00z_Spread: 0 file(s) downloaded, 8 file(s) skipped
+data/12z_Spread: 4 file(s) downloaded, 4 file(s) skipped
+data/00z_Wind: 0 file(s) downloaded, 28 file(s) skipped
+data/12z_Wind: 14 file(s) downloaded, 14 file(s) skipped
+data/00z_Hoehenwind: 0 file(s) downloaded, 26 file(s) skipped
+data/12z_Hoehenwind: 13 file(s) downloaded, 13 file(s) skipped
+data/12z_Modellvergleich_Luftdruck_Boden: 0 file(s) downloaded, 13 file(s) skipped
+data: 0 file(s) downloaded, 0 file(s) skipped
+Download done.
