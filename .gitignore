@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 logfiles
 download_ftp_icebird.ipynb
 .DS_Store
@@ -5,3 +6,9 @@ WEATHER/data*
 *.listing
 *.ipynb_checkpoints
 *.swp
+=======
+.DS_Store
+00_MISC/
+01_DOCUMENTS/
+03_SATCOMM/
+>>>>>>> valentin

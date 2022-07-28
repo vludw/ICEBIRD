@@ -32,7 +32,7 @@ make.map <- function(obs.all,pir,large = TRUE){
 	}else{
 		plot.name = paste0("obs_fcst_tracks_zoom_",today,".pdf") # name of plot
 	}
-	pdf(file.path(plot.dir,"maps",plot.name)) # open PDF file for plotting
+	pdf(file.path(plot.dir.maps,plot.name)) # open PDF file for plotting
 	if (large){
 		pir = sl.plot.init(projection = "polar",polar.lonlatrot = c(center.plot.lon,center.plot.lat,0),polar.latbound = 87, do.init.device=F,main = paste0("\n Buoy tracks on ",today)) # open plot
 	}else{
@@ -131,13 +131,25 @@ if (up.to.date){ # boolean to decide whether new forecasts and observations shal
 today = format(Sys.time(),("%Y%m%d")) # today's date (needed for savenames)
 
 home.dir = Sys.getenv("HOME") # get home directory
-plot.dir = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/plots") # plots will be saved here
+if (Sys.getenv("USER") == "vludwig"){
+  plot.dir.maps = file.path(home.dir,"04_EVENTS/03_ICEBIRD/03_REPO/BUOYS/plots/maps") # plots will be saved here
+  plot.dir.speedangle = file.path(home.dir,"04_EVENTS/03_ICEBIRD/03_REPO/BUOYS/plots/speedangle") # plots will be saved here
+  data.path.local = file.path(home.dir,"04_EVENTS/03_ICEBIRD/03_REPO/BUOYS/data/txt")
+}else if (Sys.getenv("USER") == "icebird"){
+  plot.dir.maps = file.path(home.dir,"ICEBIRD/BUOYS/plots/maps") # plots will be saved here
+  plot.dir.speedangle = file.path(home.dir,"ICEBIRD/BUOYS/plots/speedangle") # plots will be saved here
+  data.path.local = file.path(home.dir,"ICEBIRD/BUOYS/data/txt")
+}
 
 ## Load observations and determine plot domain ##
 obs.all = list()  # list for observations
 tids.res.list = c() # list with Target IDs. Needed to determine center of plot (middle buoy is selected based on Target ID, last point of this buoy will be the center of the map)
 for (i.tid in 1:length(tids)){ # loop over targets
-	obs.all[[i.tid]] = sidfex.read.obs(TargetID = tids[i.tid]) # add current target to list
+  if (read.obs.from.local){
+	  obs.all[[i.tid]] = sidfex.read.obs(TargetID = tids[i.tid],data.path = data.path.local) # add current target to list
+  }else{
+	  obs.all[[i.tid]] = sidfex.read.obs(TargetID = tids[i.tid]) # add current target to list
+  }
 	tids.res.list = c(tids.res.list,obs.all[[i.tid]]$TargetID) # add target ID to list
 }
 
@@ -158,7 +170,7 @@ if (do.speedangle){
 		obs.tid = obs.all[[i.obs]] # Get observation for current target
 		ind.tid = index[index$TargetID == obs.tid$TargetID,] # get index with all forecasts for current target
 		plot.name = paste0("speedangle_",obs.tid$TargetID,"_",today,".pdf") # name of plot
-		pdf(file.path(plot.dir,"speedangle",plot.name)) # open file
+		pdf(file.path(plot.dir.speedangle,plot.name)) # open file
 		colbar = sidfex.plot.speedangle(index = ind.tid,col.by = "DaysLeadTime",device = NULL) # make speedangle plot
 		text(x = xpos[1],y = ypos[1], label = paste0("IMEI: ",unique(ind.tid$TargetID)),cex = 1) # put IMEI on plot
 		text(x = xpos[2],y = ypos[2], label = paste0("Number of forecasts: ",length(ind.tid$File)),cex = 1) # put number of init on plot
