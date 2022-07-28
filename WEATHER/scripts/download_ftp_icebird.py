@@ -133,7 +133,12 @@ def get_pathdict(): # get remote and local filepaths
         - dictionary with local and remote filepath
     """
     remotepath = "data" # set path on remote SFTP SERVER
-    localpath = os.path.join(os.getenv("HOME"),"ICEBIRD/WEATHER/data") # set path on local machine
+    if os.environ["USER"]=="icebird":
+        localpath = os.path.join(os.getenv("HOME"),"ICEBIRD/WEATHER/data") # set path on local machine
+    elif os.environ["USER"]=="vludwig":
+        localpath = os.path.join(os.getenv("HOME"),"04_EVENTS/03_ICEBIRD/03_REPO/WEATHER/data") # set path on local machine
+    else:
+        print(f"{os.environ['USER']} unknown!")
     pathdict = {"remotepath":remotepath,"localpath":localpath} # dictionary with paths
     return pathdict
 
