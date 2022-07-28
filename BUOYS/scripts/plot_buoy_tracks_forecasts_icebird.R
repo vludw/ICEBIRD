@@ -132,15 +132,9 @@ today = format(Sys.time(),("%Y%m%d")) # today's date (needed for savenames)
 
 home.dir = Sys.getenv("HOME") # get home directory
 if (Sys.getenv("USER") == "vludwig"){
-<<<<<<< HEAD:BUOYS/scripts/plot_buoy_tracks_forecasts_icebird.R
   plot.dir.maps = file.path(home.dir,"04_EVENTS/03_ICEBIRD/03_REPO/BUOYS/plots/maps") # plots will be saved here
   plot.dir.speedangle = file.path(home.dir,"04_EVENTS/03_ICEBIRD/03_REPO/BUOYS/plots/speedangle") # plots will be saved here
   data.path.local = file.path(home.dir,"04_EVENTS/03_ICEBIRD/03_REPO/BUOYS/data/txt")
-=======
-  plot.dir.maps = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/plots/maps") # plots will be saved here
-  plot.dir.speedangle = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/plots/speedangle") # plots will be saved here
-  data.path.local = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/data/txt")
->>>>>>> icebird:04_BUOYS/scripts/plot_buoy_tracks_forecasts_icebird.R
 }else if (Sys.getenv("USER") == "icebird"){
   plot.dir.maps = file.path(home.dir,"ICEBIRD/BUOYS/plots/maps") # plots will be saved here
   plot.dir.speedangle = file.path(home.dir,"ICEBIRD/BUOYS/plots/speedangle") # plots will be saved here
