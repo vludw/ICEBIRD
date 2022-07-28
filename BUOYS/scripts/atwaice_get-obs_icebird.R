@@ -1,9 +1,13 @@
 ## Based on a script written by Simon Reifenberg. Original purpose was to download data of buoys deployed during the ATWAICE campaign and convert them to SIDFEx-compatible txt files. This is the version of thre script which is used during the Icebird flight campaign.
+<<<<<<< HEAD:BUOYS/scripts/atwaice_get-obs_icebird.R
 <<<<<<< HEAD
 ## Contact: Valentin Ludwig (valentin.ludiwg@awi.de)
 =======
 ## Contact: Valentin Ludwig (valentin.ludwig@awi.de)
 >>>>>>> valentin
+=======
+## Contact: Valentin Ludwig (valentin.ludwig@awi.de)
+>>>>>>> icebird:04_BUOYS/scripts/atwaice_get-obs_icebird.R
 ## Adapted from original: 20220728.
 # 
 # This script can be used to download drifter data (with wget) according to the 
@@ -99,15 +103,21 @@ if (Sys.getenv("USER") == "vludwig"){
 	drifterlist = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/scripts/drifter_table")
 	fp_dwld = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/data/csv/")
 	fp_out = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/data/txt/")
+<<<<<<< HEAD:BUOYS/scripts/atwaice_get-obs_icebird.R
 <<<<<<< HEAD
 }else{
 =======
+=======
+>>>>>>> icebird:04_BUOYS/scripts/atwaice_get-obs_icebird.R
 }else if (Sys.getenv("USER") == "icebird"){
   drifterlist = file.path(home.dir,"ICEBIRD/BUOYS/scripts/drifter_table")
   fp_dwld = file.path(home.dir,"ICEBIRD/BUOYS/data/csv/")
   fp_out = file.path(home.dir,"ICEBIRD/BUOYS/data/txt/")
 }else {
+<<<<<<< HEAD:BUOYS/scripts/atwaice_get-obs_icebird.R
 >>>>>>> valentin
+=======
+>>>>>>> icebird:04_BUOYS/scripts/atwaice_get-obs_icebird.R
 	stop(paste0(Sys.getenv("USER"), " unknown!"))
 }
 

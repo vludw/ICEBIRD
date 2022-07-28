@@ -133,7 +133,7 @@ def get_pathdict(): # get remote and local filepaths
         - dictionary with local and remote filepath
     """
     remotepath = "data" # set path on remote SFTP SERVER
-    localpath = os.path.join(os.getenv("HOME"),"04_EVENTS/03_ICEBIRD/02_WEATHER/data") # set path on local machine
+    localpath = os.path.join(os.getenv("HOME"),"ICEBIRD/WEATHER/data") # set path on local machine
     pathdict = {"remotepath":remotepath,"localpath":localpath} # dictionary with paths
     return pathdict
 
