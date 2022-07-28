@@ -1,0 +1,7 @@
+logfiles
+download_ftp_icebird.ipynb
+.DS_Store
+WEATHER/data*
+*.listing
+*.ipynb_checkpoints
+*.swp
