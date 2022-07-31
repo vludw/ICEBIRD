@@ -97,31 +97,13 @@ if (user == "vludwig"){
 	logfile.dir = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/logfiles/")
 	fp_dwld = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/data/csv/")
 	fp_out = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/data/txt/")
-<<<<<<< HEAD
-<<<<<<< HEAD:BUOYS/scripts/atwaice_get-obs_icebird.R
-<<<<<<< HEAD
-}else{
-=======
-=======
->>>>>>> icebird:04_BUOYS/scripts/atwaice_get-obs_icebird.R
-}else if (Sys.getenv("USER") == "icebird"){
-=======
 }else if (user == "icebird"){
->>>>>>> icebird
   drifterlist = file.path(home.dir,"ICEBIRD/BUOYS/scripts/drifter_table")
   logfile.dir = file.path(home.dir,"ICEBIRD/BUOYS/logfiles/")
   fp_dwld = file.path(home.dir,"ICEBIRD/BUOYS/data/csv/")
   fp_out = file.path(home.dir,"ICEBIRD/BUOYS/data/txt/")
 }else {
-<<<<<<< HEAD
-<<<<<<< HEAD:BUOYS/scripts/atwaice_get-obs_icebird.R
->>>>>>> valentin
-=======
->>>>>>> icebird:04_BUOYS/scripts/atwaice_get-obs_icebird.R
-	stop(paste0(Sys.getenv("USER"), " unknown!"))
-=======
 	stop(paste0(user, " unknown!"))
->>>>>>> icebird
 }
 timestamp.logfile = format(Sys.time(),"%Y%m%d_%H%M%S")
 
