@@ -91,18 +91,21 @@ atwaice_stitch_csv_together <- function(filepath.in, filepath.out, targetID){
 
 # list of drifters for ATWAICE
 home.dir = Sys.getenv("HOME")
-if (Sys.getenv("USER") == "vludwig"){
+user = Sys.info()[["user"]]
+if (user == "vludwig"){
 	drifterlist = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/scripts/drifter_table")
+	logfile.dir = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/logfiles/")
 	fp_dwld = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/data/csv/")
 	fp_out = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/data/txt/")
-}else if (Sys.getenv("USER") == "icebird"){
+}else if (user == "icebird"){
   drifterlist = file.path(home.dir,"ICEBIRD/BUOYS/scripts/drifter_table")
+  logfile.dir = file.path(home.dir,"ICEBIRD/BUOYS/logfiles/")
   fp_dwld = file.path(home.dir,"ICEBIRD/BUOYS/data/csv/")
   fp_out = file.path(home.dir,"ICEBIRD/BUOYS/data/txt/")
 }else {
-	stop(paste0(Sys.getenv("USER"), " unknown!"))
+	stop(paste0(user, " unknown!"))
 }
-
+timestamp.logfile = format(Sys.time(),"%Y%m%d_%H%M%S")
 
 # where to store the data from the ftp server
 
@@ -127,7 +130,7 @@ for (buoy_id in ATWAICE_SIDFEX_IMEI_LIST){
   system(paste0('wget -A', '"*', buoy_id,'*"',' -nH -m --no-remove-listing --reject',
                 ' "index.html" -c --progress=dot -N --secure-protocol=auto ',
                 '--no-proxy --passive-ftp --ftp-user=mhoppmann ',
-                '--ftp-password=mhoppmannirD9 --no-check-certificate ',
+                '--ftp-password=mhoppmannirD9 --no-check-certificate -a ',logfile.dir,'logfile_download_',timestamp.logfile,'.txt ',
                 'ftps://ldmanager.southteksl.com:21 -P ', fp_dwld))
 
   atwaice_stitch_csv_together(fp_dwld, fp_out, buoy_id)
