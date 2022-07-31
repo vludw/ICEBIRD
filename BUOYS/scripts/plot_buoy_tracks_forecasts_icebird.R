@@ -1,3 +1,4 @@
+#!/usr/bin/env Rscript
 ##################################
 ## Purpose: Plot buoy data and SIDFEx forecasts for selected buoys during the Icebird campaign.
 ## Created by: Valentin Ludwig (valentin.ludwig@awi.de)
@@ -129,13 +130,15 @@ if (up.to.date){ # boolean to decide whether new forecasts and observations shal
 	res = sidfex.download.obs(TargetID = tids) # download observations
 }
 today = format(Sys.time(),("%Y%m%d")) # today's date (needed for savenames)
-
+print(paste0("USER: ",Sys.info()[["user"]]))
 home.dir = Sys.getenv("HOME") # get home directory
-if (Sys.getenv("USER") == "vludwig"){
-  plot.dir.maps = file.path(home.dir,"04_EVENTS/03_ICEBIRD/03_REPO/BUOYS/plots/maps") # plots will be saved here
-  plot.dir.speedangle = file.path(home.dir,"04_EVENTS/03_ICEBIRD/03_REPO/BUOYS/plots/speedangle") # plots will be saved here
-  data.path.local = file.path(home.dir,"04_EVENTS/03_ICEBIRD/03_REPO/BUOYS/data/txt")
-}else if (Sys.getenv("USER") == "icebird"){
+user = Sys.info()[["user"]]
+print(home.dir)
+if (user == "vludwig"){
+  plot.dir.maps = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/plots/maps") # plots will be saved here
+  plot.dir.speedangle = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/plots/speedangle") # plots will be saved here
+  data.path.local = file.path(home.dir,"04_EVENTS/03_ICEBIRD/04_BUOYS/data/txt")
+}else if (user == "icebird"){
   plot.dir.maps = file.path(home.dir,"ICEBIRD/BUOYS/plots/maps") # plots will be saved here
   plot.dir.speedangle = file.path(home.dir,"ICEBIRD/BUOYS/plots/speedangle") # plots will be saved here
   data.path.local = file.path(home.dir,"ICEBIRD/BUOYS/data/txt")
