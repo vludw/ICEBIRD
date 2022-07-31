@@ -1,0 +1,4 @@
+WEATHER/data*
+*.listing
+logfile_*
+*.swp
