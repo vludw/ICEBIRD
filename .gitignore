@@ -5,6 +5,6 @@
 00_MISC/
 01_DOCUMENTS/
 03_SATCOMM/
-WEATHER/data*
+WEATHER/daily_data*
 download_ftp_icebird.ipynb
 logfile_*
