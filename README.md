@@ -1,9 +1,12 @@
 # Operational download of weather data and download and plotting of buoy trajectories and drift forecasts during the Icebird Summer 2022 campaign.
 #### Author: Valentin Ludwig (valentin.ludwig@awi.de)
 #### Created: 20220725
-#### Last updated: 20220831
+#### Last updated (repo): 20220801
+#### Last updated (README): 20220801
 
 
+### UPDATES
+20220801: Handling of buoy data now obsolete as they were taken from the ice at the end of the ATWAICE campaign.
 ### CONTENTS
 - WEATHER: directory which contains scripts for downloading DWD weather forecasts, as well as the data themselves
 	- data: Mirror of DWD FTP server. Updated each day every ten minutes between 6 am and 9 am local time. Data will be overwritten with the newer version on the next day
