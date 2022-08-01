@@ -1,44 +1,39 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Download of weather data for Icebird campaign
-
-# This notebook downloads weather data for the 2022 Icebird campaign. The data are provided by the german weather service (DWD) via an SFTP server. 
-
-# ### Workflow
-#     - Connect to SFTP server using Python's paramiko module  
-#     - Compare local and remote files
-#         - If a remote file does not exist locally, download it
-#         - If a file with the same filename as the remote file exists locally, but the filesizes are different, download it
-#         - If a file with the same filename as the remote file exists locally and the filesizes (remote and local) are the same, skip it
-#     - Close connection
-#     - Central function (sftp_get_recursive) shamelessly copied from https://stackoverflow.com/questions/6674862/recursive-directory-download-with-paramiko
-
-# ### Remark
-# The decision whether a remote file shall be downloaded if a file with the same filename exists locally could also be done based on the modification time. For this, remote and local modification time would be compared and if the remote modification time is larger than the local modification time (i.e., remote file has been modified after local file), the file would be downloaded. Filesize comparison seems to be more robust though.
-
-# In[1]:
-
-
-##########################################
+###########################################################################
+## Purpose: Download of weather data for Icebird campaign
 ## Created on: 20220712
 ## Last significantly modified: 20220712
 ## Author: Valentin Ludwig
 ## Contact: valentin.ludwig@awi.de
+## How to use: 
+##  - Run the script setup.bash to set up an anaconda environment in which the script works (needs paramiko for SFTP interaction and pip for installing paramiko)
+##  - In this script, set the following variables:
+##      - In function get_accessdict():
+##          - host: address of SFTP server
+##          - port: specified port on server
+##          - username/password: username and password :-)
+##      - In function get_pathdict():
+##          - remotepath: Filepath on remote server. For DWD, all the data are in subdirectories of one folder called "data", therefore "data" is set as remotepath.
+##          - localpath: Filepathon your local machine to which the data shall be saved
+## Workflow
+#   - Connect to SFTP server using Python's paramiko module  
+#   - Compare local and remote files
+#       - If a remote file does not exist locally, download it
+#       - If a file with the same filename as the remote file exists locally, but the filesizes are different, download it
+#       - If a file with the same filename as the remote file exists locally and the filesizes (remote and local) are the same, skip it
+#   - Close connection
+#   - Central function (sftp_get_recursive) copied from https://stackoverflow.com/questions/6674862/recursive-directory-download-with-paramiko
+## Remark:  The decision whether a remote file shall be downloaded if a file with the same filename exists locally could also be done based on the modification time. For this, remote and local modification time would be compared and if the remote modification time is larger than the local modification time (i.e., remote file has been modified after local file), the file would be downloaded. Filesize comparison seems to be more robust though.
 ###########################################
-
-
-# In[2]:
-
 
 ## Import modules
 import paramiko # needed for SFTP interaction
 import os,sys # needed for filesize comparison
 from stat import S_ISDIR, S_ISREG # needed in sftp_get_recursive function
 
-# In[3]:
-
-
+## Function which downloads the data recursively
 def sftp_get_recursive(path, dest, sftp, verbose = False, print_summary = True):
     """
         Function to recursively download all data in path to dest. Directory structure is preserved.
@@ -100,11 +95,7 @@ def sftp_get_recursive(path, dest, sftp, verbose = False, print_summary = True):
         except UnboundLocalError: # if it does not exist, pass
             pass
                 
-
-
-# In[4]:
-
-
+## Access data for SFTP server
 def get_accessdict(): # get credentials and address for SFTP login
     """
     Get address and credentials of the SFTP server.
@@ -120,10 +111,7 @@ def get_accessdict(): # get credentials and address for SFTP login
     accessdict = {"host":host,"port":port,"password":password,"username":username} # dictionary with credentials
     return accessdict
 
-
-# In[5]:
-
-
+## Filepaths on local machine and remote SFTP server
 def get_pathdict(): # get remote and local filepaths
     """
     Get filepaths.
@@ -133,19 +121,11 @@ def get_pathdict(): # get remote and local filepaths
         - dictionary with local and remote filepath
     """
     remotepath = "data" # set path on remote SFTP SERVER
-    if os.environ["USER"]=="icebird":
-        localpath = os.path.join(os.getenv("HOME"),"ICEBIRD/WEATHER/data") # set path on local machine
-    elif os.environ["USER"]=="vludwig":
-        localpath = os.path.join(os.getenv("HOME"),"04_EVENTS/03_ICEBIRD/03_REPO/WEATHER/data") # set path on local machine
-    else:
-        print(f"{os.environ['USER']} unknown!")
+    localpath = os.path.join(os.getenv("HOME"),"ICEBIRD/WEATHER/data") # set path on local machine
     pathdict = {"remotepath":remotepath,"localpath":localpath} # dictionary with paths
     return pathdict
 
-
-# In[6]:
-
-
+## Connection to SFTP
 def open_sftp(accessdict):
     """
     Open connection to SFTP server and login.
@@ -159,10 +139,7 @@ def open_sftp(accessdict):
     sftp = paramiko.SFTPClient.from_transport(transport) # open SFTP connection
     return sftp,transport
 
-
-# In[7]:
-
-
+## Close connection to SFTP server
 def close_sftp(sftp,transport):
     """
     Close connection to SFTP server.
@@ -175,27 +152,16 @@ def close_sftp(sftp,transport):
     transport.close() # close connection
 
 
-# In[8]:
-
-
+# Get access data
 accessdict,pathdict = get_accessdict(), get_pathdict() # dictionaries are needed for the SFTP connection
 
-
-# In[9]:
-
-
+# Connect to SFTP server
 sftp,transport = open_sftp(accessdict) # get SFTP object
 
-
-# In[10]:
-
-
+# Download data
 sftp_get_recursive(pathdict["remotepath"], pathdict["localpath"], sftp,verbose = False, print_summary = True) # download data
 
-
-# In[11]:
-
-
+# Close connection
 close_sftp(sftp,transport) # close connection
 print("Download done.")
 
