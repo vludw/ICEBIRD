@@ -1,4 +1,4 @@
-WEATHER/data*
+WEATHER/daily_data/data*
 *.listing
 logfile_*
 *.swp
