@@ -3,6 +3,8 @@
 ## Purpose: Plot buoy data and SIDFEx forecasts for selected buoys during the Icebird campaign.
 ## Created by: Valentin Ludwig (valentin.ludwig@awi.de)
 ## Creation date: 20220726
+## Remark: To run the script, you need to have the R packages SIDFEx and spheRlab installed. Best require the SIDFEx team (helge.goessling@awi.de or valentin.ludwig@awi.de) for instructions.
+## Next remark: ATWAICE buoys were taken from the ice. Script is now obsolete. Should still work for future campaigns with slight modifications, for which the SIDFEx team can be contacted.
 ###################################
 rm(list=ls()) # Clean up before starting
 ## Load modules ##
@@ -16,11 +18,11 @@ make.map <- function(obs.all,pir,large = TRUE){
 	n.obs = length(obs.all[[ind.center.tid]]$data$Lon) # number of data points
 	center.plot.lon = c(obs.all[[ind.center.tid]]$data$Lon[n.obs]) # last longitude/latitude will be center of the plot domain
 	center.plot.lat = c(obs.all[[ind.center.tid]]$data$Lat[n.obs]) # last longitude/latitude will be center of the plot domain
-	first.day.obs = round(obs.all[[ind.center.tid]]$data$POS_DOY[1],1)
-	first.year.obs = obs.all[[ind.center.tid]]$data$Year[1]
-	first.date.obs.jul = paste0(first.year.obs,"-",first.day.obs)
-	first.date.obs = as.Date(first.date.obs.jul,format = "%Y-%j")
-	first.date.obs.str = paste0("Observation starts: ",first.date.obs)
+	first.day.obs = round(obs.all[[ind.center.tid]]$data$POS_DOY[1],1) # first day of observations
+	first.year.obs = obs.all[[ind.center.tid]]$data$Year[1] # first year of observations
+	first.date.obs.jul = paste0(first.year.obs,"-",first.day.obs) # convert first date to julian date
+	first.date.obs = as.Date(first.date.obs.jul,format = "%Y-%j") # add the year
+	first.date.obs.str = paste0("Observation starts: ",first.date.obs) # 
 	
 	last.day.obs = obs.all[[ind.center.tid]]$data$POS_DOY[n.obs]
 	last.year.obs =obs.all[[ind.center.tid]]$data$Year[n.obs]

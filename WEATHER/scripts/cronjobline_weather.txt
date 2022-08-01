@@ -1,0 +1,1 @@
+*/10 6-9 * * * /bin/bash ~/ICEBIRD/WEATHER/scripts/start_download_ftp_icebird.bash # USE THIS ONE FOR OPERATIONAL DOWNLOAD

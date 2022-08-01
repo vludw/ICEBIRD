@@ -1,10 +1,10 @@
 *.ipynb_checkpoints
+WEATHER/daily_data/data*
 *.listing
 *.swp
 .DS_Store
 00_MISC/
 01_DOCUMENTS/
 03_SATCOMM/
-WEATHER/daily_data*
 download_ftp_icebird.ipynb
 logfile_*

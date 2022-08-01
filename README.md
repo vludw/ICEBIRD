@@ -33,7 +33,8 @@
 
 ### HOW TO USE
 - Weather data: 
-	- Adapt local and remote path in download_ftp_icebird.py, as well as the SFTP credentials. Install Python's paramiko module. More detailed instruction in download_ftp_icebird.py. Further, adapt filepaths in start_download_ftp_icebird.bash. Again, more detailed instructions in start_download_ftp_icebird.bash itself.
+	- Execute the script WEATHER/scripts/setup.bash. In this script, you need to specify the path to your local anaconda installation. It will then create the conda environment which you need for running the download script.
+	- Adapt local and remote path in download_ftp_icebird.py, as well as the SFTP credentials. Further, adapt filepaths in start_download_ftp_icebird.bash. More detailed instructions in the scripts themselves.
 - Buoy data:
 	- Observations:
 		- adapt file paths and FTP credentials in atwaice_get-obs_icebird.R. More details in the script.
@@ -42,8 +43,5 @@
 	- Copy the lines in the .txt files WEATHER/scripts/cronjobline_weather.txt and BUOYS/scripts/cronjobline_buoys.txt into the user's crontab (open it via crontab -e). The default settings will execute the weather data download daily between 6 am and 9 am local time every ten minutes and the downloading and plotting of buoy data every day at 6 am, once a day.
 	- For booting the laptop automatically, add the line "cronjobline_autoboot.txt" into the sudo user's crontab (open with sudo crontab -e). This line sends a signal to boot the laptop at 05:45 am local time the next day. It is called at 6 am local time, i. e., the laptop boots automatically at 05:45 am the next day and at 6 am this cronjob sends the signal to boot it again on the next day at 05:45 am, making sure that this loop is maintained and the laptop boots each day. IMPORTANT NOTE: To start the loop, the wake up signal needs to be sent manually once! For this, just enter the line 'sudo /usr/sbin/rtcwake -t $(date +\%s -d "tomorrow 05:45") ' once, at an arbitrary time of the day.
 
-### BRANCHES
-- icebird: Should work right away. Use this for changing stuff during the campaign.
-- main: Also works, but is not the mainly used branch. More used to keep track of major changes, so you might need to incorporate changes from branch icebird to keep it up to date.
 ### OTHER NOTES
 The software was developed and tested on AWI laptop bkli05l015 under Ubuntu 2020 for the user icebird. If you run it on this laptop and with the icebird user, it should work straightaway after updating the SFTP credentials and, if you want, the filepaths. On other Linux machines, it should also work after adapting the filepaths and installing the Python/R packages. On MacOS, it should also work pretty quickly, but the file paths, both those in the scripts and those called in the crontab's might look differently. ON a MacOS machine, you can also do the autoboot via the Settings (Settings --> Battery --> Schedule), then you don't need the stuff in the sudo user's crontab.

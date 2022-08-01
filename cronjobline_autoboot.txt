@@ -1,0 +1,1 @@
+00 06 * * *  /usr/sbin/rtcwake -t $(date +\%s -d "tomorrow 05:45")
