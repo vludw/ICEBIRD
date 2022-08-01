@@ -1,4 +1,8 @@
 #!/bin/bash
+## PURPOSE: Run the Python script which operationally downloads the weather data from DWD. This script is called by a cronjob every day between 6 am and 9 am local time, every ten minutes.
+## INSTRUCTIONS
+## You need a conda environment in which the Python module paramiko is installed. This should reside in the path specified by $CONDAPATH/envs. If it is not called icebird, change the name accordingly. If the scripts are at different locations than what is specified in this script, make sure to adapt the filepaths. Then, the script can be run by /bin/bash path_to_script/scriptname.bash, possibly after making it executable by using chmod +x scriptname.bash. Output is written to a logfile in $LOGFILEPATH.
+
 ## SET FILEPATHS AND TIMESTAMPS
 TIMESTAMP_LOGFILE=$(/bin/date +%Y%m%d_%H%M%S) # logfiles of download script will be saved here
 TIMESTAMP_BACKUP=$(/bin/date +%Y%m%d) # this will be used for naming the backup directory
