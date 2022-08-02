@@ -1,7 +1,7 @@
-*.ipynb_checkpoints
 WEATHER/data_daily/data*
-*.listing
-*.swp
+WEATHER/data_selected/
 logfile_*
 *BACKUP*
-WEATHER/data_selected/
+*.ipynb_checkpoints
+*.listing
+*.swp
