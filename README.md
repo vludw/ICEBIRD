@@ -36,6 +36,7 @@
 	- Execute the script WEATHER/scripts/setup.bash. In this script, you need to specify the path to your local anaconda installation. It will then create the conda environment which you need for running the download script.
 	- Set the filepaths in the file WEATHER/scripts/config.bash. This is called in the processing and all variables which are needed are defined here. No need for other changes.
 	- Execute the script WEATHER/scripts/start_download_ftp_icebird.bash.
+	- A remark: Only the files and directories whose filenames are specified in the file WEATHER/scripts/filelist.txt are downloaded. Other files will not be downloaded!
 - Buoy data:
 	- Observations:
 		- adapt file paths and FTP credentials in atwaice_get-obs_icebird.R. More details in the script.
