@@ -34,7 +34,8 @@
 ### HOW TO USE
 - Weather data: 
 	- Execute the script WEATHER/scripts/setup.bash. In this script, you need to specify the path to your local anaconda installation. It will then create the conda environment which you need for running the download script.
-	- Adapt local and remote path in download_ftp_icebird.py, as well as the SFTP credentials. Further, adapt filepaths in start_download_ftp_icebird.bash. More detailed instructions in the scripts themselves.
+	- Set the filepaths in the file WEATHER/scripts/config.bash. This is called in the processing and all variables which are needed are defined here. No need for other changes.
+	- Execute the script WEATHER/scripts/start_download_ftp_icebird.bash.
 - Buoy data:
 	- Observations:
 		- adapt file paths and FTP credentials in atwaice_get-obs_icebird.R. More details in the script.
