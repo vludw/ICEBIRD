@@ -156,7 +156,8 @@ def close_sftp(sftp,transport):
 
 
 # Skip directories
-f_downloadnames = open("filelist.txt", mode = "r")
+filepath = os.getenv("SCRIPTPATH")
+f_downloadnames = open(os.path.join(filepath,"filelist.txt"), mode = "r")
 f_lines_tmp = f_downloadnames.readlines()
 download_names = [f_line_tmp[:-1] for f_line_tmp in f_lines_tmp]
 # Get access data
