@@ -12,6 +12,7 @@
 export TIMESTAMP_LOGFILE=$(/bin/date +%Y%m%d_%H%M%S) # timestamp for logfile
 export TIMESTAMP_BACKUP=$(/bin/date +%Y%m%d) # timestamp for backup
 export CONDAPATH="$HOME/opt/anaconda3" # conda environment for running the download script resides here
+export SCRIPTPATH="$HOME/ICEBIRD/WEATHER/scripts" # path for scripts
 export LOGFILEPATH="$HOME/ICEBIRD/WEATHER/logfiles" # path for logfiles of download
 export DATAPATH="$HOME/ICEBIRD/WEATHER/data" # path to which data will be downloaded
 export BACKUPPATH="$HOME/ICEBIRD/WEATHER/data_daily/data_$TIMESTAMP_BACKUP" # path where backup will be saved
