@@ -38,10 +38,10 @@ ax.set_xlim([0,len(days_all)])
 ax.set_ylim([0,5.1e3])
 ax.set_xticks(timedel_all)
 ax.set_xticklabels(days_all,rotation = 45)
+ax.set_yticks(np.arange(0,5.5e3,.5e3))
 # Add grid and legend
 ax.grid()
 ax.legend(loc = "lower right")
-time_all = time.localtime()
-fig.savefig("datausage_20220806.pdf")
-fig.show()
+fig.savefig("datausage.pdf")
+plt.close(fig)
 
