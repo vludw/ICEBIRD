@@ -8,24 +8,18 @@
 ## Author: Valentin Ludwig
 ## Contact: valentin.ludwig@awi.de
 ## How to use: 
-##  - Run the script setup.bash to set up an anaconda environment in which the script works (needs paramiko for SFTP interaction and pip for installing paramiko)
-##  - In this script, set the following variables:
-##      - In function get_accessdict():
-##          - host: address of SFTP server
-##          - port: specified port on server
-##          - username/password: username and password :-)
-##      - In function get_pathdict():
-##          - remotepath: Filepath on remote server. For DWD, all the data are in subdirectories of one folder called "data", therefore "data" is set as remotepath.
-##          - localpath: Filepathon your local machine to which the data shall be saved
-##      - In list skip_dir
+##  - Run the script setup.bash to set up an anaconda environment in which the script works (needs paramiko for SFTP interaction and pip for installing paramiko). Only needed when this script is run for the first time.
+##  - Change the SFTP address, username and password in the script config.bash
+##  - The names of the files to be downloaded are read from a file called filelist.txt in this directory. New filenames should be added there, obsolete ones removed.
 ## Workflow
-#   - Connect to SFTP server using Python's paramiko module  
-#   - Compare local and remote files
-#       - If a remote file does not exist locally, download it
-#       - If a file with the same filename as the remote file exists locally, but the filesizes are different, download it
-#       - If a file with the same filename as the remote file exists locally and the filesizes (remote and local) are the same, skip it
-#   - Close connection
-#   - Central function (sftp_get_recursive) copied from https://stackoverflow.com/questions/6674862/recursive-directory-download-with-paramiko
+##  - Connect to SFTP server using Python's paramiko module  
+##  - Get filenames to be downloaded from file filelist.txt in this directory.
+##  - Compare local and remote files
+##      - If a remote file does not exist locally, download it
+##      - If a file with the same filename as the remote file exists locally, but the filesizes are different, download it
+##      - If a file with the same filename as the remote file exists locally and the filesizes (remote and local) are the same, skip it
+##  - Close connection
+##  - Central function (sftp_get_recursive) copied from https://stackoverflow.com/questions/6674862/recursive-directory-download-with-paramiko
 ## Remark:  The decision whether a remote file shall be downloaded if a file with the same filename exists locally could also be done based on the modification time. For this, remote and local modification time would be compared and if the remote modification time is larger than the local modification time (i.e., remote file has been modified after local file), the file would be downloaded. Filesize comparison seems to be more robust though.
 ###########################################
 
@@ -156,10 +150,10 @@ def close_sftp(sftp,transport):
 
 
 # Skip directories
-filepath = os.getenv("SCRIPTPATH")
-f_downloadnames = open(os.path.join(filepath,"filelist.txt"), mode = "r")
-f_lines_tmp = f_downloadnames.readlines()
-download_names = [f_line_tmp[:-1] for f_line_tmp in f_lines_tmp]
+filepath = os.getenv("SCRIPTPATH") # path to directory with this script
+f_downloadnames = open(os.path.join(filepath,"filelist.txt"), mode = "r") # get the names of the files and directories to be downloaded from the file filelist.txt
+f_lines_tmp = f_downloadnames.readlines() # extract the filenames
+download_names = [f_line_tmp[:-1] for f_line_tmp in f_lines_tmp] # Remove newline character from filenames
 # Get access data
 accessdict,pathdict = get_accessdict(), get_pathdict() # dictionaries are needed for the SFTP connection
 
