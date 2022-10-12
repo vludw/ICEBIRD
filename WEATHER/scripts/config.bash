@@ -17,7 +17,7 @@ export LOGFILEPATH="$HOME/ICEBIRD/WEATHER/logfiles" # path for logfiles of downl
 export DATAPATH="$HOME/ICEBIRD/WEATHER/data" # path to which data will be downloaded
 export BACKUPPATH="$HOME/ICEBIRD/WEATHER/data_daily/data_$TIMESTAMP_BACKUP" # path where backup will be saved
 
-## SET PATHS USED IN download_ftp_icebird.py
+## SET PATHS AND ACCESSDATA USED IN download_ftp_icebird.py
 export HOST=data.dwd.de # hostname
 export PORT=2424 # port number
 export PASSWORD=C7UFYvD7Rb.*4ub\;gq\;Y # password
