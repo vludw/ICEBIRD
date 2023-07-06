@@ -4,7 +4,7 @@
 ## Created: 20220801
 ## Last modified: 20220801
 echo "Creating environment..."
-ENVNAME=icebird2 # name for conda environment
+ENVNAME=icebird # name for conda environment
 CONDAPATH=$HOME/opt/anaconda3/ # directory where your anaconda is installed
 conda create --name $ENVNAME # create the environment
 echo "Activating environment..."
